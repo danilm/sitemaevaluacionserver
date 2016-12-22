@@ -13,15 +13,13 @@ public class ServidorSocket {
 	private int port;
 	private Socket socket;
 	private ServerSocket serverSocket;
-	public void escuchar(int port, String password) {
+	
+	public void escuchar(int port) {
 		this.port = port;
 		
 		try {
 			this.serverSocket = new ServerSocket(port);
 			this.socket = serverSocket.accept();
-			
-			
-			
 			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
