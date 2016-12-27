@@ -1,10 +1,15 @@
 package com.ucavila.sisevaulacion.model;
 
+import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
-public class Tienda {
+public class Tienda implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String nombreTienda;
 	//TODO:CAMBIAR EL TIPO DE DATO A UNO SORTED
 	private ArrayList<Vendedor> listaVendedores = new ArrayList<Vendedor>();
@@ -30,11 +35,15 @@ public class Tienda {
 	
 	public void mostrarTienda(Tienda tienda){
 		System.out.println("Tienda: " + tienda.getNombreTienda());
-		System.out.println("Listado de vendedores");
-		System.out.println("=====================");
+		System.out.println("Listado de vendedores (total " + tienda.listaVendedores.size() + ")");
+		System.out.println("==========================================");
+		int indice=1;
 		for (Vendedor vendedor : tienda.listaVendedores){
-			System.out.println(vendedor.getApellidos() + " " + vendedor.getNombre() + " " + vendedor.getTotal() + "€ " + formatter.format(vendedor.getFecha()));
+			System.out.println(indice + " " + vendedor.getApellidos() + " " + vendedor.getNombre() + " " + vendedor.getTotal() + "€ " + formatter.format(vendedor.getFecha()));
+			indice++;
 		}
+		System.out.println("==========================================");
+		
 	}
 	
 	
