@@ -10,6 +10,7 @@ import java.io.OutputStreamWriter;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.TreeSet;
 
 import com.ucavila.sisevaulacion.model.Tienda;
 import com.ucavila.sisevaulacion.model.Vendedor;
@@ -74,7 +75,7 @@ public class ThreadServidor extends Thread{
 	 */
 	private static Tienda crearTienda(){
 		Tienda tienda = new Tienda("Mi tienda Servidor");
-		ArrayList<Vendedor> listaVendedores = new ArrayList<Vendedor>();
+		TreeSet<Vendedor> listaVendedores = new TreeSet<Vendedor>();
 		Vendedor vendedor = new Vendedor();
 		vendedor.setApellidos("LOPEZ MESA");
 		vendedor.setNombre("DANIEL");
@@ -87,6 +88,22 @@ public class ThreadServidor extends Thread{
 		vendedor.setApellidos("HIDALGO PRIEGO");
 		vendedor.setNombre("ISABEL");
 		vendedor.setTotal(900.0);
+		vendedor.setFecha(new Date());
+		
+		listaVendedores.add(vendedor);
+		
+		vendedor = new Vendedor();
+		vendedor.setApellidos("ALVAREZ SOR");
+		vendedor.setNombre("JAVIER");
+		vendedor.setTotal(800.0);
+		vendedor.setFecha(new Date());
+		
+		listaVendedores.add(vendedor);
+		
+		vendedor = new Vendedor();
+		vendedor.setApellidos("BERMUDEZ TRES");
+		vendedor.setNombre("ALFONSO");
+		vendedor.setTotal(700.0);
 		vendedor.setFecha(new Date());
 		
 		listaVendedores.add(vendedor);

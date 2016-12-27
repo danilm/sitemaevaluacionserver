@@ -3,6 +3,7 @@ package com.ucavila.sisevaulacion.model;
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.TreeSet;
 
 public class Tienda implements Serializable {
 
@@ -12,7 +13,7 @@ public class Tienda implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private String nombreTienda;
 	//TODO:CAMBIAR EL TIPO DE DATO A UNO SORTED
-	private ArrayList<Vendedor> listaVendedores = new ArrayList<Vendedor>();
+	private TreeSet<Vendedor> listaVendedores = new TreeSet<Vendedor>();
 	SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
 	
 	public Tienda(String nombre) {
@@ -26,10 +27,10 @@ public class Tienda implements Serializable {
 	public void setNombreTienda(String nombreTienda) {
 		this.nombreTienda = nombreTienda;
 	}
-	public ArrayList<Vendedor> getListaVendedores() {
+	public TreeSet<Vendedor> getListaVendedores() {
 		return listaVendedores;
 	}
-	public void setListaVendedores(ArrayList<Vendedor> listaVendedores) {
+	public void setListaVendedores(TreeSet<Vendedor> listaVendedores) {
 		this.listaVendedores = listaVendedores;
 	}
 	
