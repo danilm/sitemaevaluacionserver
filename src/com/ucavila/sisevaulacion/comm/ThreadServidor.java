@@ -43,14 +43,19 @@ public class ThreadServidor extends Thread{
 				
 				if (recibido.equals(PASSWORD)){
 					pw.writeObject("OK");
-					//TODO: Y le mandamos los datos de Tienda
+					
 					pw.writeObject(obtenerTienda());
 				} else {
 					//Lo que viene no es correcto
 					System.out.println("Error, password incorrecto " + recibido);
 					
 				}
-			} else {
+			} if (recibido.equals("ClienteSiS-excepcion")){
+				pw.writeObject("ServidorSiS-enviarExcepcion");
+				Vendedor vendedorEx = (Vendedor)br.readObject();
+				insertarVendedor(vendedorEx);
+				
+			}else {
 				//Lo que viene no es correcto
 				System.out.println("Error, lo recibido no se corresponde con los datos esperados de un cliente válido" + recibido);
 				
@@ -66,11 +71,23 @@ public class ThreadServidor extends Thread{
 		}
 	}
 	
-	public Tienda obtenerTienda(){
-		Tienda tienda = crearTienda();
-		return tienda;
+	/**
+	 * Metodo para obtener la tienda
+	 * @return
+	 */
+	private Tienda obtenerTienda(){
+		//Tienda tienda = crearTienda();
+		return Servidor.getTienda();
 	}
 	
+	/**
+	 * Añadimos un vendedor que ha generado la excepcion a nuestra tienda
+	 * @param vendedorEx
+	 */
+	private void insertarVendedor(Vendedor vendedorEx){
+		Tienda tienda = Servidor.getTienda();
+		tienda.getListaVendedores().put(vendedorEx.getApellidos(), vendedorEx);
+	}
 	/**
 	 * Método exclusivamente de prueba
 	 * @return
