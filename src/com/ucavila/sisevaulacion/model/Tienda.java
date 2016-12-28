@@ -2,10 +2,9 @@ package com.ucavila.sisevaulacion.model;
 
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Map;
 import java.util.TreeMap;
-import java.util.TreeSet;
+
 
 public class Tienda implements Serializable {
 

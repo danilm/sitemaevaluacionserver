@@ -1,17 +1,12 @@
 package com.ucavila.sisevaulacion.comm;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
+
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.io.OutputStreamWriter;
 import java.net.Socket;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.TreeMap;
-import java.util.TreeSet;
+
+
 
 import com.ucavila.sisevaulacion.model.Tienda;
 import com.ucavila.sisevaulacion.model.Vendedor;
@@ -30,11 +25,10 @@ public class ThreadServidor extends Thread{
 			System.out.println("Usando Socket " + this.socket.getPort());
 			//Obtiene el flujo de salida asociado al socket:
 			
-			//OLD:BufferedWriter bw  = new BufferedWriter(new OutputStreamWriter(socketOut));
 			ObjectOutputStream pw = new ObjectOutputStream(this.socket.getOutputStream());
 			//Obtiene el flujo de entrada asociado al socket:
-			//OLD:BufferedReader br = new BufferedReader(new InputStreamReader(this.socket.getInputStream()));
 			ObjectInputStream br = new ObjectInputStream(this.socket.getInputStream());
+			
 			String recibido = (String)br.readObject();
 			
 			if (recibido.equals("ClienteSiS")){
@@ -52,6 +46,7 @@ public class ThreadServidor extends Thread{
 				}
 			} if (recibido.equals("ClienteSiS-excepcion")){
 				pw.writeObject("ServidorSiS-enviarExcepcion");
+				
 				Vendedor vendedorEx = (Vendedor)br.readObject();
 				insertarVendedor(vendedorEx);
 				
@@ -76,7 +71,6 @@ public class ThreadServidor extends Thread{
 	 * @return
 	 */
 	private Tienda obtenerTienda(){
-		//Tienda tienda = crearTienda();
 		return Servidor.getTienda();
 	}
 	
@@ -88,60 +82,5 @@ public class ThreadServidor extends Thread{
 		Tienda tienda = Servidor.getTienda();
 		tienda.getListaVendedores().put(vendedorEx.getApellidos(), vendedorEx);
 	}
-	/**
-	 * Método exclusivamente de prueba
-	 * @return
-	 */
-	private static Tienda crearTienda(){
-		
-		Tienda tienda = Servidor.getTienda();
-		Integer indice = Servidor.getIndice();
-		
-		TreeMap<String,Vendedor> listaVendedores = new TreeMap<String,Vendedor>();
-		Vendedor vendedor = new Vendedor();
-		vendedor.setApellidos("LOPEZ MESA");
-		vendedor.setNombre("DANIEL");
-		vendedor.setTotal(1000.0);
-		vendedor.setFecha(new Date());
-		
-		listaVendedores.put(vendedor.getApellidos(),vendedor);
-		Servidor.setIndice(indice++);
-		
-		vendedor = new Vendedor();
-		vendedor.setApellidos("ALVAREZ SOR");
-		vendedor.setNombre("JAVIER");
-		vendedor.setTotal(800.0);
-		vendedor.setFecha(new Date());
-		
-		listaVendedores.put(vendedor.getApellidos(),vendedor);
-		Servidor.setIndice(indice++);
-		
-	    vendedor = new Vendedor();
-		vendedor.setApellidos("HIDALGO PRIEGO");
-		vendedor.setNombre("ISABEL");
-		vendedor.setTotal(900.0);
-		vendedor.setFecha(new Date());
-		
-		listaVendedores.put(vendedor.getApellidos(),vendedor);
-		Servidor.setIndice(indice++);
-		
-		
-		
-		vendedor = new Vendedor();
-		vendedor.setApellidos("BERMUDEZ TRES");
-		vendedor.setNombre("ALFONSO");
-		vendedor.setTotal(700.0);
-		vendedor.setFecha(new Date());
-		
-		listaVendedores.put(vendedor.getApellidos(),vendedor);
-		Servidor.setIndice(indice++);
-		
-		tienda.setListaVendedores(listaVendedores);
-		tienda.setNombreTienda("Mi tienda Servidor");
-		
-		//Actualizamos la tienda global
-		Servidor.setTienda(tienda);
-		
-		return tienda;
-	}
+	
 }

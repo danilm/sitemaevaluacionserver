@@ -9,7 +9,7 @@ import com.ucavila.sisevaulacion.model.Tienda;
 public class Servidor {
 
 	private static final int PORT=2244;
-	private static final String PASSWORD="1qazxsw2";
+	
 	private static Tienda tienda = new Tienda();
 	private static Integer indice=1;
 	
