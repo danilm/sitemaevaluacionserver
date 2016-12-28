@@ -10,10 +10,12 @@ import java.io.OutputStreamWriter;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.TreeMap;
 import java.util.TreeSet;
 
 import com.ucavila.sisevaulacion.model.Tienda;
 import com.ucavila.sisevaulacion.model.Vendedor;
+import com.ucavila.sisevaulacion.servidor.Servidor;
 
 public class ThreadServidor extends Thread{
 	private Socket socket;
@@ -74,23 +76,19 @@ public class ThreadServidor extends Thread{
 	 * @return
 	 */
 	private static Tienda crearTienda(){
-		Tienda tienda = new Tienda("Mi tienda Servidor");
-		TreeSet<Vendedor> listaVendedores = new TreeSet<Vendedor>();
+		
+		Tienda tienda = Servidor.getTienda();
+		Integer indice = Servidor.getIndice();
+		
+		TreeMap<String,Vendedor> listaVendedores = new TreeMap<String,Vendedor>();
 		Vendedor vendedor = new Vendedor();
 		vendedor.setApellidos("LOPEZ MESA");
 		vendedor.setNombre("DANIEL");
 		vendedor.setTotal(1000.0);
 		vendedor.setFecha(new Date());
 		
-		listaVendedores.add(vendedor);
-		
-	    vendedor = new Vendedor();
-		vendedor.setApellidos("HIDALGO PRIEGO");
-		vendedor.setNombre("ISABEL");
-		vendedor.setTotal(900.0);
-		vendedor.setFecha(new Date());
-		
-		listaVendedores.add(vendedor);
+		listaVendedores.put(vendedor.getApellidos(),vendedor);
+		Servidor.setIndice(indice++);
 		
 		vendedor = new Vendedor();
 		vendedor.setApellidos("ALVAREZ SOR");
@@ -98,7 +96,19 @@ public class ThreadServidor extends Thread{
 		vendedor.setTotal(800.0);
 		vendedor.setFecha(new Date());
 		
-		listaVendedores.add(vendedor);
+		listaVendedores.put(vendedor.getApellidos(),vendedor);
+		Servidor.setIndice(indice++);
+		
+	    vendedor = new Vendedor();
+		vendedor.setApellidos("HIDALGO PRIEGO");
+		vendedor.setNombre("ISABEL");
+		vendedor.setTotal(900.0);
+		vendedor.setFecha(new Date());
+		
+		listaVendedores.put(vendedor.getApellidos(),vendedor);
+		Servidor.setIndice(indice++);
+		
+		
 		
 		vendedor = new Vendedor();
 		vendedor.setApellidos("BERMUDEZ TRES");
@@ -106,10 +116,14 @@ public class ThreadServidor extends Thread{
 		vendedor.setTotal(700.0);
 		vendedor.setFecha(new Date());
 		
-		listaVendedores.add(vendedor);
+		listaVendedores.put(vendedor.getApellidos(),vendedor);
+		Servidor.setIndice(indice++);
 		
 		tienda.setListaVendedores(listaVendedores);
 		tienda.setNombreTienda("Mi tienda Servidor");
+		
+		//Actualizamos la tienda global
+		Servidor.setTienda(tienda);
 		
 		return tienda;
 	}
