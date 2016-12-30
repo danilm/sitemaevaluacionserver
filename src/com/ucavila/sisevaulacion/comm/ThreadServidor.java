@@ -5,9 +5,9 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.sql.SQLException;
 
-
-
+import com.ucavila.sisevaulacion.dao.ServidorDAO;
 import com.ucavila.sisevaulacion.model.Tienda;
 import com.ucavila.sisevaulacion.model.Vendedor;
 import com.ucavila.sisevaulacion.servidor.Servidor;
@@ -70,7 +70,12 @@ public class ThreadServidor extends Thread{
 	}
 	
 	private void guardarDatosConexion(String ip) {
-		// TODO Auto-generated method stub
+		ServidorDAO servidorDAO = new ServidorDAO();
+		try {
+			servidorDAO.insertarIP(ip);
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
 		
 	}
 

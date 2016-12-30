@@ -1,4 +1,4 @@
-package com.ucavila.sisevaulacion.business;
+package com.ucavila.sisevaulacion.dao;
 
 /**
  * Interfaz que modela la operativa del servidor
