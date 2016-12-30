@@ -13,7 +13,8 @@ public class Tienda implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 	private String nombreTienda;
-	//TODO:CAMBIAR EL TIPO DE DATO A UNO SORTED
+	
+	//TODO: Cambiar la ordenacion por la cantidad en vez de por apellido
 	private TreeMap<String, Vendedor> listaVendedores = new TreeMap<String, Vendedor>();
 	SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
 	

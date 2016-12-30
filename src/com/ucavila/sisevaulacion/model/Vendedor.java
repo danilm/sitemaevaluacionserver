@@ -47,6 +47,7 @@ public class Vendedor implements Serializable,Comparable<Vendedor>{
 		this.fecha = fecha;
 	}
 	
+	//TODO: Cambiar la ordenacion por la cantidad en vez de por apellido
 	@Override
 	public int compareTo(Vendedor v) {
 		return apellidos.compareTo(v.getApellidos());

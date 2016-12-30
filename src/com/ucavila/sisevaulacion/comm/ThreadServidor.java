@@ -50,6 +50,9 @@ public class ThreadServidor extends Thread{
 				Vendedor vendedorEx = (Vendedor)br.readObject();
 				insertarVendedor(vendedorEx);
 				
+				//Por último, guardamos en BBDD la IP y la fecha
+				guardarDatosConexion(vendedorEx.getIp());
+				
 			}else {
 				//Lo que viene no es correcto
 				System.out.println("Error, lo recibido no se corresponde con los datos esperados de un cliente válido" + recibido);
@@ -66,6 +69,11 @@ public class ThreadServidor extends Thread{
 		}
 	}
 	
+	private void guardarDatosConexion(String ip) {
+		// TODO Auto-generated method stub
+		
+	}
+
 	/**
 	 * Metodo para obtener la tienda
 	 * @return
